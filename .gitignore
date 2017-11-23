@@ -24,5 +24,8 @@ hs_err_pid*
 # Maven
 target/
 
-# IntelliJ IDEA
+# IntelliJ IDEA project folder
 .idea
+
+# Data folder
+data/
