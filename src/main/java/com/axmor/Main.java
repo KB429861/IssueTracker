@@ -3,6 +3,7 @@ package com.axmor;
 import com.axmor.issue.IssueController;
 import com.axmor.issue.IssueDao;
 import com.axmor.issue.IssueDaoImpl;
+import com.axmor.util.DatabaseHelper;
 import com.axmor.util.Path;
 
 import static spark.Spark.get;
@@ -17,6 +18,9 @@ public class Main {
     public static IssueDao issueDao;
 
     public static void main(String[] args) {
+
+        // Instantiate database.
+        DatabaseHelper.createTables();
 
         // Instantiate dependencies.
         issueDao = new IssueDaoImpl();

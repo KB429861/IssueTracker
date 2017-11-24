@@ -1,6 +1,6 @@
 package com.axmor.issue;
 
-import com.axmor.util.ConnectionFactory;
+import com.axmor.util.DatabaseHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public Issue getIssue(int id) {
-        Connection connection = ConnectionFactory.getConnection();
+        Connection connection = DatabaseHelper.getConnection();
         try {
             if (connection != null) {
                 Statement statement = connection.createStatement();
@@ -39,7 +39,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public Iterable<Issue> getAllIssues() {
-        Connection connection = ConnectionFactory.getConnection();
+        Connection connection = DatabaseHelper.getConnection();
         try {
             if (connection != null) {
                 Statement statement = connection.createStatement();
@@ -59,7 +59,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public boolean insertIssue(Issue issue) {
-        Connection connection = ConnectionFactory.getConnection();
+        Connection connection = DatabaseHelper.getConnection();
         try {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO issues VALUES (NULL, ?, ?, ?, ?, ?)");
