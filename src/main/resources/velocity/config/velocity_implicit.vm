@@ -1,0 +1,2 @@
+#* @implicitly included *#
+#* @vtlvariable name="issues" type="java.lang.Iterable<com.axmor.issue.Issue>" *#

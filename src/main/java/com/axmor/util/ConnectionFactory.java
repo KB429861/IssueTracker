@@ -14,7 +14,6 @@ public class ConnectionFactory {
 
     /**
      * Get a connection to the database.
-     *
      * @return Connection object.
      */
     public static Connection getConnection() {
