@@ -16,7 +16,7 @@ public class DatabaseHelper {
     private static final String USER = "sa";
     private static final String PASS = "";
 
-    private static final String SCRIPT = "./src/main/java/com/axmor/database/tables.sql";
+    private static final String SCRIPT = "./src/main/resources/sql/create-db.sql";
 
     /**
      * Get a connection to the database.
