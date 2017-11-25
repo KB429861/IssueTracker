@@ -1,8 +1,19 @@
 CREATE TABLE IF NOT EXISTS issues (
-  id          INTEGER        NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id          INTEGER        NOT NULL AUTO_INCREMENT,
   summary     NVARCHAR2(255) NOT NULL,
   description NVARCHAR2(4000),
   author      NVARCHAR2(255) NOT NULL,
   start_date  DATE           NOT NULL,
-  status      NVARCHAR2(30)  NOT NULL
+  status      NVARCHAR2(30)  NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+  id       INTEGER        NOT NULL AUTO_INCREMENT,
+  issue_id INTEGER        NOT NULL,
+  date     SMALLDATETIME  NOT NULL,
+  author   NVARCHAR2(255) NOT NULL,
+  text     NVARCHAR2(4000),
+  PRIMARY KEY (id),
+  FOREIGN KEY (issue_id) REFERENCES issues (id)
 );

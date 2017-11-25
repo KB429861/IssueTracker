@@ -70,7 +70,7 @@ public class IssueDaoImpl implements IssueDao {
                 ps.setString(1, issue.getSummary());
                 ps.setString(2, issue.getDescription());
                 ps.setString(3, issue.getAuthor());
-                ps.setDate(4, issue.getStartDate());
+                ps.setTimestamp(4, new Timestamp(issue.getStartDate().getTime()));
                 ps.setString(5, issue.getStatus());
                 int result = ps.executeUpdate();
                 if (result == 1) {

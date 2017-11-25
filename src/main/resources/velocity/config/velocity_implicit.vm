@@ -1,4 +1,5 @@
 #* @implicitly included *#
+#* @vtlvariable name="comments" type="java.lang.Iterable<com.axmor.comment.Comment>" *#
 #* @vtlvariable name="issue" type="com.axmor.issue.Issue" *#
 #* @vtlvariable name="WebPath" type="com.axmor.util.Path.Web" *#
 #* @vtlvariable name="redirect" type="java.lang.String" *#

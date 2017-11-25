@@ -1,6 +1,6 @@
 package com.axmor.issue;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Issue {
 

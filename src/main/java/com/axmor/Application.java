@@ -1,5 +1,7 @@
 package com.axmor;
 
+import com.axmor.comment.CommentDao;
+import com.axmor.comment.CommentDaoImpl;
 import com.axmor.issue.IssueController;
 import com.axmor.issue.IssueDao;
 import com.axmor.issue.IssueDaoImpl;
@@ -16,6 +18,7 @@ public class Application {
 
     // Declare dependencies.
     public static IssueDao issueDao;
+    public static CommentDao commentDao;
 
     public static void main(String[] args) {
 
@@ -24,6 +27,7 @@ public class Application {
 
         // Instantiate dependencies.
         issueDao = new IssueDaoImpl();
+        commentDao = new CommentDaoImpl();
 
         // Set up port.
         port(8080);
@@ -36,5 +40,6 @@ public class Application {
         get(Path.Web.ISSUES_NEW, IssueController.getNewIssue);
         post(Path.Web.ISSUES_NEW, IssueController.postNewIssue);
         get(Path.Web.ISSUES_ONE, IssueController.getOneIssue);
+        post(Path.Web.ISSUES_ONE, IssueController.postOneIssue);
     }
 }
