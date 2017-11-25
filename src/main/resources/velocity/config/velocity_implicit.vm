@@ -1,2 +1,3 @@
 #* @implicitly included *#
+#* @vtlvariable name="redirect" type="java.lang.String" *#
 #* @vtlvariable name="issues" type="java.lang.Iterable<com.axmor.issue.Issue>" *#

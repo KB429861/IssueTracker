@@ -12,7 +12,11 @@ public class IssueDaoImpl implements IssueDao {
         try {
             Issue issue = new Issue();
             issue.setId(rs.getInt("id"));
+            issue.setSummary(rs.getString("summary"));
             issue.setAuthor(rs.getString("author"));
+            issue.setDescription(rs.getString("description"));
+            issue.setStartDate(rs.getDate("start_date"));
+            issue.setStatus(rs.getString("status"));
             return issue;
         } catch (SQLException e) {
             e.printStackTrace();

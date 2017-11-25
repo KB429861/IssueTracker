@@ -46,7 +46,7 @@ public class DatabaseHelper {
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (FileNotFoundException e) {
-                throw new RuntimeException("Can't open SQL script.", e);
+                throw new RuntimeException("Can't find SQL script.", e);
             }
         }
     }

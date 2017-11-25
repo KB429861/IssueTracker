@@ -14,6 +14,12 @@ public class Issue {
     public Issue() {
     }
 
+    public Issue(String summary, String author, String description) {
+        this.summary = summary;
+        this.author = author;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }

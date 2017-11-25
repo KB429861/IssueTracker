@@ -6,8 +6,7 @@ import com.axmor.issue.IssueDaoImpl;
 import com.axmor.util.DatabaseHelper;
 import com.axmor.util.Path;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
+import static spark.Spark.*;
 
 /**
  * Application entry point.
@@ -29,6 +28,8 @@ public class Main {
         port(8080);
 
         // Set up routes.
-        get(Path.Web.ISSUES, IssueController.fetchAllIssues);
+        get(Path.Web.ISSUES, IssueController.getAllIssues);
+        get(Path.Web.ISSUES_NEW, IssueController.getNewIssue);
+        post(Path.Web.ISSUES_NEW, IssueController.postNewIssue);
     }
 }
