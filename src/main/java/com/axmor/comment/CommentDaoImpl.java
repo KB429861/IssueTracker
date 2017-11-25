@@ -29,7 +29,7 @@ public class CommentDaoImpl implements CommentDao {
         try {
             if (connection != null) {
                 Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery("SELECT * FROM comments WHERE id=" + id);
+                ResultSet rs = statement.executeQuery("SELECT * FROM comments WHERE id='" + id + "'");
                 if (rs.next()) {
                     return extractCommentFromResultSet(rs);
                 }
@@ -46,7 +46,7 @@ public class CommentDaoImpl implements CommentDao {
         try {
             if (connection != null) {
                 Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery("SELECT * FROM comments WHERE issue_id=" + issueId);
+                ResultSet rs = statement.executeQuery("SELECT * FROM comments WHERE issue_id='" + issueId + "'");
                 List<Comment> comments = new ArrayList<>();
                 while (rs.next()) {
                     Comment comment = extractCommentFromResultSet(rs);

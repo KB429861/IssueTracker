@@ -1,3 +1,9 @@
+CREATE TABLE IF NOT EXISTS users (
+  username NVARCHAR2(255) NOT NULL,
+  password NVARCHAR2(255) NOT NULL,
+  PRIMARY KEY (username)
+);
+
 CREATE TABLE IF NOT EXISTS issues (
   id          INTEGER        NOT NULL AUTO_INCREMENT,
   summary     NVARCHAR2(255) NOT NULL,
@@ -5,7 +11,8 @@ CREATE TABLE IF NOT EXISTS issues (
   author      NVARCHAR2(255) NOT NULL,
   start_date  SMALLDATETIME  NOT NULL,
   status      NVARCHAR2(30)  NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (author) REFERENCES users (username)
 );
 
 CREATE TABLE IF NOT EXISTS comments (
@@ -15,5 +22,6 @@ CREATE TABLE IF NOT EXISTS comments (
   author   NVARCHAR2(255) NOT NULL,
   text     NVARCHAR2(4000),
   PRIMARY KEY (id),
-  FOREIGN KEY (issue_id) REFERENCES issues (id)
+  FOREIGN KEY (issue_id) REFERENCES issues (id),
+  FOREIGN KEY (author) REFERENCES users (username)
 );

@@ -1,0 +1,23 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<form method="post">
+    #if($failed)
+        <p class="text-danger">Incorrect username or password.</p>
+    #elseif($succeeded)
+        <p class="text-success">Successfully logged in as <strong>$currentUsername</strong>.</p>
+    #end
+    <div class="form-group">
+        <label class="control-label">Username</label>
+        <input type="text" class="form-control" name="username" required>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Password</label>
+        <input type="password" class="form-control" name="password" required>
+    </div>
+    #if($redirect)
+        <input type="hidden" name="redirect" value="$redirect">
+    #end
+    <button type="submit" class="btn btn-primary">Log in</button>
+    <a href="/register/" class="btn btn-secondary">Sign up</a>
+</form>
+#end

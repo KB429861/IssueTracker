@@ -7,8 +7,4 @@ public interface IssueDao {
     Iterable<Issue> getAllIssues();
 
     boolean insertIssue(Issue issue);
-
-    boolean updateIssue(Issue issue);
-
-    boolean deleteIssue(Issue issue);
 }

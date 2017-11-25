@@ -13,9 +13,9 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(int issueId, Date date, String author, String text) {
+    public Comment(int issueId, String author, String text) {
         this.issueId = issueId;
-        this.date = date;
+        this.date = new Date();
         this.author = author;
         this.text = text;
     }

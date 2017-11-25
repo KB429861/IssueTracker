@@ -1,6 +1,8 @@
 #* @implicitly included *#
+#* @vtlvariable name="succeeded" type="java.lang.Boolean" *#
+#* @vtlvariable name="failed" type="java.lang.Boolean" *#
+#* @vtlvariable name="currentUsername" type="java.lang.String" *#
 #* @vtlvariable name="comments" type="java.lang.Iterable<com.axmor.comment.Comment>" *#
 #* @vtlvariable name="issue" type="com.axmor.issue.Issue" *#
-#* @vtlvariable name="WebPath" type="com.axmor.util.Path.Web" *#
 #* @vtlvariable name="redirect" type="java.lang.String" *#
 #* @vtlvariable name="issues" type="java.lang.Iterable<com.axmor.issue.Issue>" *#

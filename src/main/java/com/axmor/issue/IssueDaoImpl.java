@@ -30,7 +30,7 @@ public class IssueDaoImpl implements IssueDao {
         try {
             if (connection != null) {
                 Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery("SELECT * FROM issues WHERE id=" + id);
+                ResultSet rs = statement.executeQuery("SELECT * FROM issues WHERE id='" + id + "'");
                 if (rs.next()) {
                     return extractIssueFromResultSet(rs);
                 }
@@ -80,16 +80,6 @@ public class IssueDaoImpl implements IssueDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
-    }
-
-    @Override
-    public boolean updateIssue(Issue issue) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteIssue(Issue issue) {
         return false;
     }
 }

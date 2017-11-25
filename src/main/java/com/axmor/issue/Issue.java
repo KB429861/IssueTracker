@@ -18,6 +18,8 @@ public class Issue {
         this.summary = summary;
         this.author = author;
         this.description = description;
+        this.startDate = new Date();
+        this.status = "Opened";
     }
 
     public int getId() {
