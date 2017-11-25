@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class ViewUtil {
 
-    public static String render(Map model, String templatePath) {
+    public static String render(Map<String, Object> model, String templatePath) {
+        model.put("WebPath", Path.Web.class);
         return new VelocityTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }

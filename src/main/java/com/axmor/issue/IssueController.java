@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.axmor.Main.issueDao;
+import static com.axmor.Application.issueDao;
 
 public class IssueController {
 
@@ -31,6 +31,14 @@ public class IssueController {
         Map<String, Object> model = new HashMap<>();
         createNewIssue(request);
         return ViewUtil.render(model, Path.Template.ISSUE_ALL);
+    };
+
+    public static Route getOneIssue = (request, response) -> {
+        Map<String, Object> model = new HashMap<>();
+        int id = Integer.parseInt(request.params("id"));
+        Issue issue = issueDao.getIssue(id);
+        model.put("issue", issue);
+        return ViewUtil.render(model, Path.Template.ISSUE_ONE);
     };
 
     private static void createNewIssue(Request request) {

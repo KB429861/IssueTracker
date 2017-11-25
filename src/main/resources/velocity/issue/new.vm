@@ -1,6 +1,8 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-<h1>New issue</h1>
+<div class="page-header">
+    <h2>New issue</h2>
+</div>
 <form method="post">
     <div class="form-group">
         <label for="summary">Summary</label>

@@ -1,20 +1,26 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-<h1>Issues</h1>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Summary</th>
-        <th>Author</th>
-        <th>Status</th>
-    </tr>
-    #foreach($issue in $issues)
-        <tr>
-            <td>$!issue.getId()</td>
-            <td>$!issue.getSummary()</td>
-            <td>$!issue.getAuthor()</td>
-            <td>$!issue.getStatus()</td>
-        </tr>
-    #end
-</table>
+<div class="page-header">
+    <h2>Issues</h2>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Summary</th>
+                <th>Author</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            #foreach($issue in $issues)
+                <tr onclick="document.location=;$issue.getId()">
+                    <td>$issue.getSummary()</td>
+                    <td>$issue.getAuthor()</td>
+                    <td>$issue.getStatus()</td>
+                </tr>
+            #end
+        </tbody>
+    </table>
+</div>
 #end
