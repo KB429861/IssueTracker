@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             #foreach($issue in $issues)
-                <tr onclick="document.location=;$issue.getId()">
+                <tr onclick="document.location='$issue.getId()'">
                     <td>$issue.getSummary()</td>
                     <td>$issue.getAuthor()</td>
                     <td>$issue.getStatus()</td>

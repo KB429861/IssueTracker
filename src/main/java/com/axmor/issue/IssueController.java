@@ -16,8 +16,8 @@ import static com.axmor.Application.issueDao;
 public class IssueController {
 
     public static Route getAllIssues = (request, response) -> {
-        Iterable<Issue> issues = issueDao.getAllIssues();
         Map<String, Object> model = new HashMap<>();
+        Iterable<Issue> issues = issueDao.getAllIssues();
         model.put("issues", issues);
         return ViewUtil.render(model, Path.Template.ISSUE_ALL);
     };
@@ -29,9 +29,9 @@ public class IssueController {
     };
 
     public static Route postNewIssue = (request, response) -> {
-        Map<String, Object> model = new HashMap<>();
         createNewIssue(request);
-        return ViewUtil.render(model, Path.Template.ISSUE_ALL);
+        response.redirect(Path.Web.ISSUES);
+        return null;
     };
 
     public static Route getOneIssue = (request, response) -> {
@@ -46,8 +46,7 @@ public class IssueController {
 
     public static Route postOneIssue = (request, response) -> {
         createComment(request);
-        int id = Integer.parseInt(request.params(":id"));
-        response.redirect(Path.Web.ISSUES + id);
+        response.redirect("#");
         return null;
     };
 

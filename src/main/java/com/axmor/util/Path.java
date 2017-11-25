@@ -6,7 +6,6 @@ public class Path {
         public final static String ISSUES = "/issues/";
         public final static String ISSUES_NEW = "/issues/new/";
         public final static String ISSUES_ONE = "/issues/:id/";
-
     }
 
     public static class Template {
