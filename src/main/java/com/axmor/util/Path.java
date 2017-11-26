@@ -8,6 +8,7 @@ public class Path {
         public final static String ISSUES = "/issues/";
         public final static String ISSUES_NEW = "/issues/new/";
         public final static String ISSUES_ONE = "/issues/:id/";
+        public final static String ISSUES_EDIT = "/issues/edit/:id/";
     }
 
     public static class Template {
@@ -16,6 +17,7 @@ public class Path {
         public final static String ISSUE_ALL = "/velocity/issue/all.vm";
         public final static String ISSUE_NEW = "/velocity/issue/new.vm";
         public final static String ISSUE_ONE = "/velocity/issue/one.vm";
+        public final static String ISSUE_EDIT = "/velocity/issue/edit.vm";
     }
 
     public class Model {

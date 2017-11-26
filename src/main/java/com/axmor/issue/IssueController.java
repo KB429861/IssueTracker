@@ -58,4 +58,25 @@ public class IssueController {
         response.redirect("#");
         return null;
     };
+
+    public static Route getEditIssue = (request, response) -> {
+        Map<String, Object> model = new HashMap<>();
+        int id = getParamId(request);
+        Issue issue = issueDao.getIssue(id);
+        model.put(Path.Model.ISSUE, issue);
+        return ViewUtil.render(request, model, Path.Template.ISSUE_EDIT);
+    };
+
+    public static Route postEditIssue = (request, response) -> {
+        LogInController.ensureUserIsLoggedIn(request, response);
+        int id = getParamId(request);
+        String summary = getQuerySummary(request);
+        String description = getQueryDescription(request);
+        Issue issue = issueDao.getIssue(id);
+        issue.setSummary(summary);
+        issue.setDescription(description);
+        issueDao.updateIssue(issue);
+        response.redirect(Path.Web.ISSUES + id);
+        return null;
+    };
 }

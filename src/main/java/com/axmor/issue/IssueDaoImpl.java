@@ -82,4 +82,24 @@ public class IssueDaoImpl implements IssueDao {
         }
         return false;
     }
+
+    @Override
+    public boolean updateIssue(Issue issue) {
+        Connection connection = DatabaseHelper.getConnection();
+        try {
+            if (connection != null) {
+                PreparedStatement ps = connection.prepareStatement("UPDATE issues SET summary=?, description=? WHERE id=?");
+                ps.setString(1, issue.getSummary());
+                ps.setString(2, issue.getDescription());
+                ps.setInt(3, issue.getId());
+                int result = ps.executeUpdate();
+                if (result == 1) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -3,6 +3,10 @@
 <div class="page-header">
     <h2>Issue</h2>
 </div>
+    #if($currentUsername == $issue.getAuthor())
+    <a class="btn btn-default" href="/issues/edit/$issue.getId()/">Edit</a>
+    #end
+
 <div class="container-fluid">
     <div class="row">
         <p>$issue.getSummary()</p>
