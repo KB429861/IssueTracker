@@ -5,14 +5,17 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS issues (
-  id          INTEGER        NOT NULL AUTO_INCREMENT,
-  summary     NVARCHAR2(255) NOT NULL,
-  description NVARCHAR2(4000),
-  author      NVARCHAR2(255) NOT NULL,
-  start_date  SMALLDATETIME  NOT NULL,
-  status      NVARCHAR2(30)  NOT NULL,
+  id            INTEGER        NOT NULL AUTO_INCREMENT,
+  summary       NVARCHAR2(255) NOT NULL,
+  description   NVARCHAR2(4000),
+  author        NVARCHAR2(255) NOT NULL,
+  start_date    SMALLDATETIME  NOT NULL,
+  status        NVARCHAR2(30)  NOT NULL,
+  editor        NVARCHAR2(255),
+  modified_date SMALLDATETIME,
   PRIMARY KEY (id),
-  FOREIGN KEY (author) REFERENCES users (username)
+  FOREIGN KEY (author) REFERENCES users (username),
+  FOREIGN KEY (editor) REFERENCES users (username)
 );
 
 CREATE TABLE IF NOT EXISTS comments (

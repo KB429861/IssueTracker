@@ -17,6 +17,8 @@ public class IssueDaoImpl implements IssueDao {
             issue.setDescription(rs.getString("description"));
             issue.setStartDate(rs.getDate("start_date"));
             issue.setStatus(rs.getString("status"));
+            issue.setEditor(rs.getString("editor"));
+            issue.setModifiedDate(rs.getDate("modified_date"));
             return issue;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,12 +68,18 @@ public class IssueDaoImpl implements IssueDao {
         Connection connection = DatabaseHelper.getConnection();
         try {
             if (connection != null) {
-                PreparedStatement ps = connection.prepareStatement("INSERT INTO issues VALUES (NULL, ?, ?, ?, ?, ?)");
+                PreparedStatement ps = connection.prepareStatement("INSERT INTO issues VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
                 ps.setString(1, issue.getSummary());
                 ps.setString(2, issue.getDescription());
                 ps.setString(3, issue.getAuthor());
                 ps.setTimestamp(4, new Timestamp(issue.getStartDate().getTime()));
                 ps.setString(5, issue.getStatus());
+                ps.setString(6, issue.getEditor());
+                if (issue.getModifiedDate() != null) {
+                    ps.setTimestamp(7, new Timestamp(issue.getModifiedDate().getTime()));
+                } else {
+                    ps.setTimestamp(7, null);
+                }
                 int result = ps.executeUpdate();
                 if (result == 1) {
                     return true;
@@ -88,10 +96,19 @@ public class IssueDaoImpl implements IssueDao {
         Connection connection = DatabaseHelper.getConnection();
         try {
             if (connection != null) {
-                PreparedStatement ps = connection.prepareStatement("UPDATE issues SET summary=?, description=? WHERE id=?");
+                PreparedStatement ps = connection.prepareStatement("UPDATE issues SET summary=?, author=?, description=?, start_date=?, status=?, editor=?, modified_date=? WHERE id=?");
                 ps.setString(1, issue.getSummary());
-                ps.setString(2, issue.getDescription());
-                ps.setInt(3, issue.getId());
+                ps.setString(2, issue.getAuthor());
+                ps.setString(3, issue.getDescription());
+                ps.setTimestamp(4, new Timestamp(issue.getStartDate().getTime()));
+                ps.setString(5, issue.getStatus());
+                ps.setString(6, issue.getEditor());
+                if (issue.getModifiedDate() != null) {
+                    ps.setTimestamp(7, new Timestamp(issue.getModifiedDate().getTime()));
+                } else {
+                    ps.setTimestamp(7, null);
+                }
+                ps.setInt(8, issue.getId());
                 int result = ps.executeUpdate();
                 if (result == 1) {
                     return true;

@@ -53,6 +53,10 @@ public class IssueController {
         int id = getParamId(request);
         String author = getSessionCurrentUsername(request);
         String text = getQueryText(request);
+        String status = getQueryStatus(request);
+        Issue issue = issueDao.getIssue(id);
+        issue.setStatus(status);
+        issueDao.updateIssue(issue);
         Comment comment = new Comment(id, author, text);
         commentDao.insertComment(comment);
         response.redirect("#");

@@ -29,13 +29,20 @@ public class LogInController {
             return ViewUtil.render(request, model, Path.Template.LOG_IN);
         }
         setSessionCurrentUsername(request, username);
-        model.put(Path.Model.SUCCEEDED, true);
         String route = getQueryRedirect(request);
         if (route != null) {
             response.redirect(route);
         }
-        return ViewUtil.render(request, model, Path.Template.LOG_IN);
+        response.redirect(Path.Web.ISSUES);
+        return null;
     };
+
+    public static Route postLogOut = (request, response) -> {
+        removeSessionUsername(request);
+        response.redirect(Path.Web.LOG_IN);
+        return null;
+    };
+
 
     public static void ensureUserIsLoggedIn(Request request, Response response) {
         if (getSessionCurrentUsername(request) == null) {

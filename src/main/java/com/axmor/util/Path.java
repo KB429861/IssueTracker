@@ -4,6 +4,7 @@ public class Path {
 
     public static class Web {
         public final static String LOG_IN = "/login/";
+        public final static String LOG_OUT = "/logout/";
         public final static String SIGN_UP = "/register/";
         public final static String ISSUES = "/issues/";
         public final static String ISSUES_NEW = "/issues/new/";

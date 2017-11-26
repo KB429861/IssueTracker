@@ -12,6 +12,10 @@ public class RequestUtil {
         request.session().attribute("currentUsername", username);
     }
 
+    public static void removeSessionUsername(Request request) {
+        request.session().removeAttribute("currentUsername");
+    }
+
     public static void setSessionRedirect(Request request, String route) {
         request.session().attribute("redirect", route);
     }
@@ -40,6 +44,10 @@ public class RequestUtil {
 
     public static String getQueryText(Request request) {
         return request.queryParams("text");
+    }
+
+    public static String getQueryStatus(Request request) {
+        return request.queryParams("status");
     }
 
     public static String getQueryRedirect(Request request) {

@@ -1,81 +1,86 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-<div class="page-header">
-    <h2>Issue</h2>
-</div>
-    #if($currentUsername == $issue.getAuthor())
-    <a class="btn btn-default" href="/issues/edit/$issue.getId()/">Edit</a>
-    #end
-
-<div class="container-fluid">
-    <div class="row">
-        <p>$issue.getSummary()</p>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <p><strong>Status</strong></p>
-        </div>
-        <div class="col-sm-6">
-            <p>$issue.getStatus()</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <p><strong>Start date</strong></p>
-        </div>
-        <div class="col-sm-6">
-            <p>$issue.getStartDate()</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <p><strong>Author</strong></p>
-        </div>
-        <div class="col-sm-6">
-            <p>$issue.getAuthor()</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <p><strong>Description</strong></p>
-            <p>$issue.getDescription()</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <p><strong>Comments</strong></p>
-        </div>
-    </div>
-    <div>
-        #foreach($comment in $comments)
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p><em>Comment by</em> <strong>$comment.getAuthor()</strong> <em>on</em>
-                        <strong>$comment.getDate()</strong></p>
-                </div>
-                <div class="panel-body">
-                    <p>$comment.getText()</p>
-                </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>$issue.getSummary()</h2>
             </div>
-        #end
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <form method="post">
-                <div class="form-group">
-                    <label class="control-label">Status</label>
-                    <select class="form-control" name="status">
-                        <option value="Open">Open</option>
-                        <option value="Closed">Closed</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Text</label>
-                    <textarea rows="4" class="form-control" name="text"></textarea>
-                </div>
-                <button type="submit" class="btn btn-default">Add</button>
-            </form>
+            <div class="col-sm-2">
+                #if($currentUsername == $issue.getAuthor())
+                    <a class="btn btn-default pull-right" href="/issues/edit/$issue.getId()/">Edit</a>
+                #end
+            </div>
         </div>
+    </div>
+    <div class="container panel-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <p><strong>Status</strong></p>
+            </div>
+            <div class="col-sm-6">
+                <p>$issue.getStatus()</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <p><strong>Start date</strong></p>
+            </div>
+            <div class="col-sm-6">
+                <p>$issue.getStartDate()</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <p><strong>Author</strong></p>
+            </div>
+            <div class="col-sm-6">
+                <p>$issue.getAuthor()</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <p><strong>Description</strong></p>
+                <p>$issue.getDescription()</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <p><strong>Comments</strong></p>
+    </div>
+</div>
+<div class="panel-group">
+    #foreach($comment in $comments)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>$comment.getText()</p>
+            </div>
+            <div class="panel-footer">
+                <p><em>Comment by</em> <strong>$comment.getAuthor()</strong> <em>on</em>
+                    <strong>$comment.getDate()</strong></p>
+            </div>
+        </div>
+    #end
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label">Status</label>
+                <select class="form-control" name="status">
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Text</label>
+                <textarea rows="4" class="form-control" name="text" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Add</button>
+        </form>
     </div>
 </div>
 #end

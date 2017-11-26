@@ -54,5 +54,6 @@ public class Application {
         post(Path.Web.LOG_IN, LogInController.postLogIn);
         get(Path.Web.SIGN_UP, SignUpController.getSignUp);
         post(Path.Web.SIGN_UP, SignUpController.postSignUp);
+        post(Path.Web.LOG_OUT, LogInController.postLogOut);
     }
 }

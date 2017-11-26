@@ -1,26 +1,32 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-<div class="page-header">
-    <h2>Issues</h2>
-</div>
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Summary</th>
-                <th>Author</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            #foreach($issue in $issues)
-                <tr onclick="document.location='$issue.getId()'">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>Issues</h2>
+    </div>
+    <div class="table-responsive panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Summary</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                #foreach($issue in $issues)
+                    #if($issue.getStatus() == "closed")
+                    <tr onclick="document.location='$issue.getId()'" class="success">
+                    #else
+                    <tr onclick="document.location='$issue.getId()'">
+                    #end
                     <td>$issue.getSummary()</td>
                     <td>$issue.getAuthor()</td>
                     <td>$issue.getStatus()</td>
                 </tr>
-            #end
-        </tbody>
-    </table>
+                #end
+            </tbody>
+        </table>
+    </div>
 </div>
 #end

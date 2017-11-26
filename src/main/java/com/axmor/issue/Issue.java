@@ -10,6 +10,8 @@ public class Issue {
     private String author;
     private Date startDate;
     private String status;
+    private String editor;
+    private Date modifiedDate;
 
     public Issue() {
     }
@@ -68,5 +70,21 @@ public class Issue {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getEditor() {
+        return editor;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 }
