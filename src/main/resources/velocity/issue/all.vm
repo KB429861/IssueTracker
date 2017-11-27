@@ -15,15 +15,17 @@
             </thead>
             <tbody>
                 #foreach($issue in $issues)
-                    #if($issue.getStatus() == "closed")
-                    <tr onclick="document.location='$issue.getId()'" class="success">
-                    #else
-                    <tr onclick="document.location='$issue.getId()'">
-                    #end
-                    <td>$issue.getSummary()</td>
-                    <td>$issue.getAuthor()</td>
-                    <td>$issue.getStatus()</td>
-                </tr>
+                    <tr onclick="document.location='$issue.getId()'"
+                        #if($issue.getStatus() == $status.getClosed())
+                        class="warning"
+                        #elseif($issue.getStatus() == $status.getResolved())
+                        class="success"
+                        #end
+                    >
+                        <td><p>$issue.getSummary()</p></td>
+                        <td><p>$issue.getAuthor()</p></td>
+                        <td><p>$status.getName($issue.getStatus())</p></td>
+                    </tr>
                 #end
             </tbody>
         </table>

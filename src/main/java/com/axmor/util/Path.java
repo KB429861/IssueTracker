@@ -10,6 +10,34 @@ public class Path {
         public final static String ISSUES_NEW = "/issues/new/";
         public final static String ISSUES_ONE = "/issues/:id/";
         public final static String ISSUES_EDIT = "/issues/edit/:id/";
+
+        public static String getLogIn() {
+            return LOG_IN;
+        }
+
+        public static String getLogOut() {
+            return LOG_OUT;
+        }
+
+        public static String getSignUp() {
+            return SIGN_UP;
+        }
+
+        public static String getIssues() {
+            return ISSUES;
+        }
+
+        public static String getIssuesNew() {
+            return ISSUES_NEW;
+        }
+
+        public static String getIssuesOne() {
+            return ISSUES_ONE;
+        }
+
+        public static String getIssuesEdit() {
+            return ISSUES_EDIT;
+        }
     }
 
     public static class Template {
@@ -28,5 +56,6 @@ public class Path {
         public static final String COMMENTS = "comments";
         public static final String ISSUES = "issues";
         public static final String ISSUE = "issue";
+        public static final String STATUS = "status";
     }
 }

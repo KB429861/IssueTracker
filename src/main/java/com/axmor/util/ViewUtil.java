@@ -12,6 +12,7 @@ public class ViewUtil {
 
     public static String render(Request request, Map<String, Object> model, String templatePath) {
         model.put("currentUsername", getSessionCurrentUsername(request));
+        model.put("web", Path.Web.class);
         return new VelocityTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }

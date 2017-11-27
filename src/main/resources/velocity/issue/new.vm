@@ -7,15 +7,15 @@
     <div class="panel-body">
         <form method="post">
             <div class="form-group">
-                <label for="summary">Summary</label>
-                <input type="text" class="form-control" id="summary" name="summary" placeholder="Summary" required>
+                <label class="control-label">Summary</label>
+                <input type="text" class="form-control" name="summary" placeholder="Summary" required>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" class="form-control"></textarea>
+                <label class="control-label">Description</label>
+                <textarea name="description" rows="4" class="form-control"></textarea>
             </div>
             <button type="submit" class="btn btn-default">Save</button>
-            <a href="$redirect" type="cancel" class="btn btn-default">Cancel</a>
+            <a href="$web.getIssues()" type="cancel" class="btn btn-default">Cancel</a>
         </form>
     </div>
 </div>

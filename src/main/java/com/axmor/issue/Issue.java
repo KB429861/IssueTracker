@@ -21,7 +21,7 @@ public class Issue {
         this.author = author;
         this.description = description;
         this.startDate = new Date();
-        this.status = "Opened";
+        this.status = IssueStatus.OPEN;
     }
 
     public int getId() {

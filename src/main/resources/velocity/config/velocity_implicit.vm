@@ -1,4 +1,6 @@
 #* @implicitly included *#
+#* @vtlvariable name="status" type="com.axmor.issue.IssueStatus" *#
+#* @vtlvariable name="web" type="com.axmor.util.Path.Web" *#
 #* @vtlvariable name="succeeded" type="java.lang.Boolean" *#
 #* @vtlvariable name="failed" type="java.lang.Boolean" *#
 #* @vtlvariable name="currentUsername" type="java.lang.String" *#

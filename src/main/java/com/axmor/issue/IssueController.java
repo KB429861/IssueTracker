@@ -6,6 +6,7 @@ import com.axmor.util.Path;
 import com.axmor.util.ViewUtil;
 import spark.Route;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ public class IssueController {
         Map<String, Object> model = new HashMap<>();
         Iterable<Issue> issues = issueDao.getAllIssues();
         model.put(Path.Model.ISSUES, issues);
+        model.put(Path.Model.STATUS, new IssueStatus());
         return ViewUtil.render(request, model, Path.Template.ISSUE_ALL);
     };
 
@@ -29,6 +31,7 @@ public class IssueController {
     };
 
     public static Route postNewIssue = (request, response) -> {
+        LogInController.ensureUserIsLoggedIn(request, response);
         String summary = getQuerySummary(request);
         String author = getSessionCurrentUsername(request);
         String description = getQueryDescription(request);
@@ -45,6 +48,7 @@ public class IssueController {
         Iterable<Comment> comments = commentDao.getIssueComments(id);
         model.put(Path.Model.ISSUE, issue);
         model.put(Path.Model.COMMENTS, comments);
+        model.put(Path.Model.STATUS, new IssueStatus());
         return ViewUtil.render(request, model, Path.Template.ISSUE_ONE);
     };
 
@@ -56,6 +60,8 @@ public class IssueController {
         String status = getQueryStatus(request);
         Issue issue = issueDao.getIssue(id);
         issue.setStatus(status);
+        issue.setEditor(author);
+        issue.setModifiedDate(new Date());
         issueDao.updateIssue(issue);
         Comment comment = new Comment(id, author, text);
         commentDao.insertComment(comment);
@@ -64,6 +70,7 @@ public class IssueController {
     };
 
     public static Route getEditIssue = (request, response) -> {
+        LogInController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
         int id = getParamId(request);
         Issue issue = issueDao.getIssue(id);
