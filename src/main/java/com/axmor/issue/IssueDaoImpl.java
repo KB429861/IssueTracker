@@ -119,4 +119,21 @@ public class IssueDaoImpl implements IssueDao {
         }
         return false;
     }
+
+    @Override
+    public boolean deleteIssue(Issue issue) {
+        Connection connection = DatabaseHelper.getConnection();
+        try {
+            if (connection != null) {
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate("DELETE FROM issues WHERE id='" + issue.getId() + "'");
+                if (result == 1) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

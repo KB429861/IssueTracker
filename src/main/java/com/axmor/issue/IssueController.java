@@ -90,4 +90,13 @@ public class IssueController {
         response.redirect(Path.Web.ISSUES + id);
         return null;
     };
+
+    public static Route postDeleteIssue = (request, response) -> {
+        LogInController.ensureUserIsLoggedIn(request, response);
+        int id = getParamId(request);
+        Issue issue = issueDao.getIssue(id);
+        issueDao.deleteIssue(issue);
+        response.redirect(Path.Web.ISSUES);
+        return null;
+    };
 }

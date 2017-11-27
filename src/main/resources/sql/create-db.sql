@@ -25,6 +25,6 @@ CREATE TABLE IF NOT EXISTS comments (
   author   NVARCHAR2(255) NOT NULL,
   text     NVARCHAR2(4000),
   PRIMARY KEY (id),
-  FOREIGN KEY (issue_id) REFERENCES issues (id),
+  FOREIGN KEY (issue_id) REFERENCES issues (id) ON DELETE CASCADE,
   FOREIGN KEY (author) REFERENCES users (username)
 );

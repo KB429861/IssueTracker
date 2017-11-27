@@ -10,6 +10,7 @@ public class Path {
         public final static String ISSUES_NEW = "/issues/new/";
         public final static String ISSUES_ONE = "/issues/:id/";
         public final static String ISSUES_EDIT = "/issues/edit/:id/";
+        public final static String ISSUES_DELETE = "/issues/delete/:id/";
 
         public static String getLogIn() {
             return LOG_IN;
@@ -37,6 +38,10 @@ public class Path {
 
         public static String getIssuesEdit() {
             return ISSUES_EDIT;
+        }
+
+        public static String getIssuesDelete() {
+            return ISSUES_DELETE;
         }
     }
 

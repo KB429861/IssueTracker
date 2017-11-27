@@ -8,7 +8,10 @@
             </div>
             <div class="col-sm-2">
                 #if($currentUsername == $issue.getAuthor())
-                    <a class="btn btn-default pull-right" href="/issues/edit/$issue.getId()/">Edit</a>
+                    <form class="pull-right" method="post" action="/issues/delete/$issue.getId()/">
+                        <a class="btn btn-default" href="/issues/edit/$issue.getId()/">Edit</a>
+                        <button type="submit" class="btn btn-default">Delete</button>
+                    </form>
                 #end
             </div>
         </div>

@@ -9,4 +9,6 @@ public interface IssueDao {
     boolean insertIssue(Issue issue);
 
     boolean updateIssue(Issue issue);
+
+    boolean deleteIssue(Issue issue);
 }

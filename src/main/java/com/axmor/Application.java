@@ -50,6 +50,7 @@ public class Application {
         post(Path.Web.ISSUES_ONE, IssueController.postOneIssue);
         get(Path.Web.ISSUES_EDIT, IssueController.getEditIssue);
         post(Path.Web.ISSUES_EDIT, IssueController.postEditIssue);
+        post(Path.Web.ISSUES_DELETE, IssueController.postDeleteIssue);
         get(Path.Web.LOG_IN, LogInController.getLogIn);
         post(Path.Web.LOG_IN, LogInController.postLogIn);
         get(Path.Web.SIGN_UP, SignUpController.getSignUp);
