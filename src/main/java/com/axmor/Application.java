@@ -43,6 +43,10 @@ public class Application {
         before("*", Filters.addTrailingSlashes);
 
         // Set up routes.
+        get("/", (request, response) -> {
+            response.redirect(Path.Web.ISSUES);
+            return null;
+        });
         get(Path.Web.ISSUES, IssueController.getAllIssues);
         get(Path.Web.ISSUES_NEW, IssueController.getNewIssue);
         post(Path.Web.ISSUES_NEW, IssueController.postNewIssue);
