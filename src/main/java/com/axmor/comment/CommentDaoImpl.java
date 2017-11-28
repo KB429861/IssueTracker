@@ -25,8 +25,7 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public Comment getComment(int id) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery("SELECT * FROM comments WHERE id='" + id + "'");
@@ -42,8 +41,7 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public Iterable<Comment> getIssueComments(int issueId) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery("SELECT * FROM comments WHERE issue_id='" + issueId + "'");
@@ -62,8 +60,7 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public boolean insertComment(Comment comment) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO comments VALUES (NULL, ?, ?, ?, ?)");
                 ps.setInt(1, comment.getIssueId());

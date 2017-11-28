@@ -20,8 +20,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUser(String username) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery("SELECT * FROM users WHERE username='" + username + "'");
@@ -37,8 +36,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean insertUser(User user) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO users VALUES (?, ?)");
                 ps.setString(1, user.getUsername());

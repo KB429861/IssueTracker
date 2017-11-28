@@ -28,8 +28,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public Issue getIssue(int id) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery("SELECT * FROM issues WHERE id='" + id + "'");
@@ -45,8 +44,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public Iterable<Issue> getAllIssues() {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery("SELECT * FROM issues");
@@ -65,8 +63,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public boolean insertIssue(Issue issue) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO issues VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
                 ps.setString(1, issue.getSummary());
@@ -93,8 +90,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public boolean updateIssue(Issue issue) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement("UPDATE issues SET summary=?, author=?, description=?, start_date=?, status=?, editor=?, modified_date=? WHERE id=?");
                 ps.setString(1, issue.getSummary());
@@ -122,8 +118,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public boolean deleteIssue(Issue issue) {
-        Connection connection = DatabaseHelper.getConnection();
-        try {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             if (connection != null) {
                 Statement statement = connection.createStatement();
                 int result = statement.executeUpdate("DELETE FROM issues WHERE id='" + issue.getId() + "'");
