@@ -32,8 +32,9 @@ public class LogInController {
         String route = getQueryRedirect(request);
         if (route != null) {
             response.redirect(route);
+        } else {
+            response.redirect(Path.Web.ISSUES);
         }
-        response.redirect(Path.Web.ISSUES);
         return null;
     };
 
