@@ -43,11 +43,19 @@ public class LogInController {
         return null;
     };
 
-
-    public static void ensureUserIsLoggedIn(Request request, Response response) {
+    /**
+     * Checks whether the user is logged in and redirects to the login page, if it doesn't.
+     *
+     * @param request  Request object.
+     * @param response Response object.
+     * @return The parameter that determines whether the user is logged in.
+     */
+    public static boolean ensureUserIsLoggedIn(Request request, Response response) {
         if (getSessionCurrentUsername(request) == null) {
             setSessionRedirect(request, request.pathInfo());
             response.redirect(Path.Web.LOG_IN);
+            return false;
         }
+        return true;
     }
 }

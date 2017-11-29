@@ -25,19 +25,22 @@ public class IssueController {
     };
 
     public static Route getNewIssue = (request, response) -> {
-        LogInController.ensureUserIsLoggedIn(request, response);
-        Map<String, Object> model = new HashMap<>();
-        return ViewUtil.render(request, model, Path.Template.ISSUE_NEW);
+        if (LogInController.ensureUserIsLoggedIn(request, response)) {
+            Map<String, Object> model = new HashMap<>();
+            return ViewUtil.render(request, model, Path.Template.ISSUE_NEW);
+        }
+        return null;
     };
 
     public static Route postNewIssue = (request, response) -> {
-        LogInController.ensureUserIsLoggedIn(request, response);
-        String summary = getQuerySummary(request);
-        String author = getSessionCurrentUsername(request);
-        String description = getQueryDescription(request);
-        Issue issue = new Issue(summary, author, description);
-        issueDao.insertIssue(issue);
-        response.redirect(Path.Web.ISSUES);
+        if (LogInController.ensureUserIsLoggedIn(request, response)) {
+            String summary = getQuerySummary(request);
+            String author = getSessionCurrentUsername(request);
+            String description = getQueryDescription(request);
+            Issue issue = new Issue(summary, author, description);
+            issueDao.insertIssue(issue);
+            response.redirect(Path.Web.ISSUES);
+        }
         return null;
     };
 
@@ -53,50 +56,55 @@ public class IssueController {
     };
 
     public static Route postOneIssue = (request, response) -> {
-        LogInController.ensureUserIsLoggedIn(request, response);
-        int id = getParamId(request);
-        String author = getSessionCurrentUsername(request);
-        String text = getQueryText(request);
-        String status = getQueryStatus(request);
-        Issue issue = issueDao.getIssue(id);
-        issue.setStatus(status);
-        issue.setEditor(author);
-        issue.setModifiedDate(new Date());
-        issueDao.updateIssue(issue);
-        Comment comment = new Comment(id, author, text);
-        commentDao.insertComment(comment);
-        response.redirect("#");
+        if (LogInController.ensureUserIsLoggedIn(request, response)) {
+            int id = getParamId(request);
+            String author = getSessionCurrentUsername(request);
+            String text = getQueryText(request);
+            String status = getQueryStatus(request);
+            Issue issue = issueDao.getIssue(id);
+            issue.setStatus(status);
+            issue.setEditor(author);
+            issue.setModifiedDate(new Date());
+            issueDao.updateIssue(issue);
+            Comment comment = new Comment(id, author, text);
+            commentDao.insertComment(comment);
+            response.redirect("#");
+        }
         return null;
     };
 
     public static Route getEditIssue = (request, response) -> {
-        LogInController.ensureUserIsLoggedIn(request, response);
-        Map<String, Object> model = new HashMap<>();
-        int id = getParamId(request);
-        Issue issue = issueDao.getIssue(id);
-        model.put(Path.Model.ISSUE, issue);
-        return ViewUtil.render(request, model, Path.Template.ISSUE_EDIT);
+        if (LogInController.ensureUserIsLoggedIn(request, response)) {
+            Map<String, Object> model = new HashMap<>();
+            int id = getParamId(request);
+            Issue issue = issueDao.getIssue(id);
+            model.put(Path.Model.ISSUE, issue);
+            return ViewUtil.render(request, model, Path.Template.ISSUE_EDIT);
+        }
+        return null;
     };
 
     public static Route postEditIssue = (request, response) -> {
-        LogInController.ensureUserIsLoggedIn(request, response);
-        int id = getParamId(request);
-        String summary = getQuerySummary(request);
-        String description = getQueryDescription(request);
-        Issue issue = issueDao.getIssue(id);
-        issue.setSummary(summary);
-        issue.setDescription(description);
-        issueDao.updateIssue(issue);
-        response.redirect(Path.Web.ISSUES + id);
+        if (LogInController.ensureUserIsLoggedIn(request, response)) {
+            int id = getParamId(request);
+            String summary = getQuerySummary(request);
+            String description = getQueryDescription(request);
+            Issue issue = issueDao.getIssue(id);
+            issue.setSummary(summary);
+            issue.setDescription(description);
+            issueDao.updateIssue(issue);
+            response.redirect(Path.Web.ISSUES + id);
+        }
         return null;
     };
 
     public static Route postDeleteIssue = (request, response) -> {
-        LogInController.ensureUserIsLoggedIn(request, response);
-        int id = getParamId(request);
-        Issue issue = issueDao.getIssue(id);
-        issueDao.deleteIssue(issue);
-        response.redirect(Path.Web.ISSUES);
+        if (LogInController.ensureUserIsLoggedIn(request, response)) {
+            int id = getParamId(request);
+            Issue issue = issueDao.getIssue(id);
+            issueDao.deleteIssue(issue);
+            response.redirect(Path.Web.ISSUES);
+        }
         return null;
     };
 }
