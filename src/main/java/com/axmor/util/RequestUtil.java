@@ -2,8 +2,6 @@ package com.axmor.util;
 
 import spark.Request;
 
-import static com.google.common.html.HtmlEscapers.htmlEscaper;
-
 public class RequestUtil {
 
     public static String getSessionCurrentUsername(Request request) {
@@ -29,31 +27,31 @@ public class RequestUtil {
     }
 
     public static String getQueryUsername(Request request) {
-        return htmlEscaper().escape(request.queryParams("username"));
+        return request.queryParams("username");
     }
 
     public static String getQueryPassword(Request request) {
-        return htmlEscaper().escape(request.queryParams("password"));
+        return request.queryParams("password");
     }
 
     public static String getQuerySummary(Request request) {
-        return htmlEscaper().escape(request.queryParams("summary"));
+        return request.queryParams("summary");
     }
 
     public static String getQueryDescription(Request request) {
-        return htmlEscaper().escape(request.queryParams("description"));
+        return request.queryParams("description");
     }
 
     public static String getQueryText(Request request) {
-        return htmlEscaper().escape(request.queryParams("text"));
+        return request.queryParams("text");
     }
 
     public static String getQueryStatus(Request request) {
-        return htmlEscaper().escape(request.queryParams("status"));
+        return request.queryParams("status");
     }
 
     public static String getQueryRedirect(Request request) {
-        return htmlEscaper().escape(request.queryParams("redirect"));
+        return request.queryParams("redirect");
     }
 
     public static int getParamId(Request request) {

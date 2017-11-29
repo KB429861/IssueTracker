@@ -18,7 +18,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         #if($currentUsername)
-                            <li><a><strong>$currentUsername</strong></a></li>
+                            <li><a><strong>$escaper.escape($currentUsername)</strong></a></li>
                             <li>
                                 <form method="post" action="$web.getLogOut()">
                                     <button type="submit" class="btn btn-default navbar-btn">Log out</button>
@@ -31,7 +31,6 @@
                                 </form>
                             </li>
                         #end
-
                     </ul>
                 </div>
             </nav>

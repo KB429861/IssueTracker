@@ -22,8 +22,8 @@
                         class="success"
                         #end
                     >
-                        <td><p>$issue.getSummary()</p></td>
-                        <td><p>$issue.getAuthor()</p></td>
+                        <td><p>$escaper.escape($issue.getSummary())</p></td>
+                        <td><p>$escaper.escape($issue.getAuthor())</p></td>
                         <td><p>$status.getName($issue.getStatus())</p></td>
                     </tr>
                 #end

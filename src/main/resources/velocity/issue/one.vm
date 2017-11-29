@@ -4,7 +4,7 @@
     <div class="panel-heading">
         <div class="row">
             <div class="col-sm-10">
-                <h2>$issue.getSummary()</h2>
+                <h2>$escaper.escape($issue.getSummary())</h2>
             </div>
             <div class="col-sm-2">
                 #if($currentUsername == $issue.getAuthor())
@@ -38,7 +38,7 @@
                 <p><strong>Author</strong></p>
             </div>
             <div class="col-sm-6">
-                <p>$issue.getAuthor()</p>
+                <p>$escaper.escape($issue.getAuthor())</p>
             </div>
         </div>
         #if($issue.getEditor())
@@ -55,14 +55,14 @@
                     <p><strong>Editor</strong></p>
                 </div>
                 <div class="col-sm-6">
-                    <p>$issue.getEditor()</p>
+                    <p>$escaper.escape($issue.getEditor())</p>
                 </div>
             </div>
         #end
         <div class="row">
             <div class="col-sm-8">
                 <p><strong>Description</strong></p>
-                <p>$issue.getDescription()</p>
+                <p>$escaper.escape($issue.getDescription())</p>
             </div>
         </div>
     </div>
@@ -76,10 +76,10 @@
     #foreach($comment in $comments)
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>$comment.getText()</p>
+                <p>$escaper.escape($comment.getText())</p>
             </div>
             <div class="panel-footer">
-                <p><em>Comment by</em> <strong>$comment.getAuthor()</strong> <em>on</em>
+                <p><em>Comment by</em> <strong>$escaper.escape($comment.getAuthor())</strong> <em>on</em>
                     <strong>$comment.getDate()</strong></p>
             </div>
         </div>

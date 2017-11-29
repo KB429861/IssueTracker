@@ -1,4 +1,5 @@
 #* @implicitly included *#
+#* @vtlvariable name="escaper" type="com.google.common.escape.Escaper" *#
 #* @vtlvariable name="status" type="com.axmor.issue.IssueStatus" *#
 #* @vtlvariable name="web" type="com.axmor.util.Path.Web" *#
 #* @vtlvariable name="succeeded" type="java.lang.Boolean" *#
